@@ -9,7 +9,7 @@ void showdfa(){
 	printf("\n\n");
 	
 	for(int i=0;i<sig;i++){
-		printf("\t|  %d",sym[i]);
+		printf("\t|  %c",sym[i]);
 	}
 	printf("\n_________________________________________");
 	for(int i=0;i<n;i++){
@@ -59,7 +59,7 @@ int checktrans(int a,int b,int c){
 	p=dfa[a][c];
 	q=dfa[b][c];
 	
-	if(checkfin(p,q))
+	if(mn_mat[p][q]==1)
 		return 1;
 	else
 		return 0;
@@ -108,6 +108,7 @@ void main(){
 		}
 	}
 	
+	
 	for(int i=0;i<n;i++){
 		for(int j=0;j<i;j++){
 			if(mn_mat[i][j]==0){
@@ -132,6 +133,7 @@ void main(){
 			break;
 		
 	}
+	
 	
 	for(int i=0;i<n;i++){
 		for(int j=0;j<i;j++){
@@ -179,7 +181,7 @@ void main(){
 			printf("%d ",min[i][j]);
 		}
 		for(int j=0;j<sig;j++){
-			int found=checkrow(dfa[i][j]);
+			int found=checkrow(dfa[min[i][0]][j]);
 			printf("\t\t  ");
 			for(int j=0;j<minr[found];j++){
 				printf("%d ",min[found][j]);
@@ -188,5 +190,5 @@ void main(){
 		printf("\n");
 	}
 	
-	
+	showdfa();
 }
